@@ -2,7 +2,10 @@
 # https://graphn.ai/inference/glm-5.3
 # Live 2026-10-27: low and high cut reasoning (45 tokens) against 148-155 for medium, max
 # and unset on the same prompt; reasoning is returned in reasoning_content. json_schema
-# honoured; a repeated ~11K-token prefix reported 11,328 cached tokens.
+# honoured; a repeated ~11K-token prefix reported 11,328 cached tokens. Context: with a
+# 13-token prompt, max_tokens = 1,040,000 was accepted and answered, and 1,049,000 was
+# refused at once by the upstream, so the window is above 1,000,000 and matches the
+# 1,048,576 GraphN publishes.
 schema = 2
 base_model = "zhipuai/glm-5.3"
 

@@ -1,8 +1,11 @@
 # Toggle: chat_template_kwargs.enable_thinking true|false (thinking is on by default)
+# Effort: reasoning_effort = none|low|medium|xhigh; high, minimal and max are refused with 400
 # https://graphn.ai/inference/qwen3.8-27b
 # Live 2026-10-27: PNG, JPEG, GIF and WebP images and MP4 video are read; enable_thinking =
 # false returns no reasoning; json_schema honoured; a repeated ~15K-token prefix reported
-# 13,600 cached tokens on the second request.
+# 13,600 cached tokens on the second request. reasoning_effort none returns no reasoning.
+# thinking_budget (top level or in chat_template_kwargs) is accepted but ignored: 64 still
+# gave 104-106 reasoning tokens, the same as unset, so no budget is listed.
 schema = 2
 base_model = "alibaba/qwen3.8-27b"
 
@@ -11,7 +14,7 @@ input = ["text", "image/jpeg", "image/png", "image/gif", "image/webp", "video/mp
 output = ["text"]
 
 [capabilities]
-reasoning = { supported = true, toggle = true }
+reasoning = { supported = true, toggle = true, effort = ["none", "low", "medium", "xhigh"] }
 structured_output = true
 cache = { implicit = true }
 
